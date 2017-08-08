@@ -1,6 +1,7 @@
 subdir('altos')
 subdir('dfu')
 subdir('ebitdo')
+subdir('purism')
 subdir('raspberrypi')
 subdir('steelseries')
 subdir('test')
