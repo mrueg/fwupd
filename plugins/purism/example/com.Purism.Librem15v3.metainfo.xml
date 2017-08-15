@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Richard Hughes <richard@hughsie.com> -->
+<component type="firmware">
+  <id>com.Purism.Librem15v3.firmware</id>
+  <name>Purism Librem15v3 Firmware</name>
+  <summary>System firmware for the Purism Librem 15 laptop</summary>
+  <description>
+    <p>
+      The Librem 15 is the first ultra-portable workstation laptop that was
+      designed chip-by-chip, line-by-line, to respect your rights to privacy,
+      security, and freedom.
+    </p>
+    <p>
+      Every hardware and software component — and everything we do — is in line
+      with our belief in respecting your rights to privacy, security, and freedom.
+    </p>
+  </description>
+  <provides>
+    <firmware type="flashed">a0ce5085-2dea-5086-ae72-45810a186ad0</firmware>
+  </provides>
+  <url type="homepage">https://puri.sm/products/librem-15/</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Proprietary</project_license> <!-- FIXME? -->
+  <developer_name>Purism</developer_name>
+  <releases>
+    <release urgency="high" version="1.2.3" date="2017-08-15">
+      <checksum filename="firmware.tar" target="content"/>
+      <description>
+        <p>
+          This release updates a frobnicator to frob faster.
+        </p>
+      </description>
+    </release>
+  </releases>
+
+  <!-- this script is run with bubblewrap -- the old firmware is in /boot -->
+  <custom>
+    <value key="fwupd::BuilderScript">startup.sh</value>
+    <value key="fwupd::BuilderOutput">firmware.bin</value>
+  </custom>
+
+  <!-- only newer versions of fwupd know how to write to this hardware -->
+  <requires>
+    <id compare="ge" version="0.9.7">org.freedesktop.fwupd</id>
+  </requires>
+
+</component>
