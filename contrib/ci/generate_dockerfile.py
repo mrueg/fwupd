@@ -86,7 +86,7 @@ with open(out, 'w') as wfd:
                 #add new architecture
                 wfd.write('RUN dpkg --add-architecture %s\n' % SUBOS)
             elif OS == "centos" and SUBOS == "i686":
-                wfd.write('RUN sed -i \'s/\$arch/i686/g\' /etc/yum.repos.d/\n')
-                wfd.write('RUN sed -i \'s/\$basearch/i386/g\' /etc/yum.repos.d/\n')
+                wfd.write('RUN sed -i \'s/\$arch/i686/g\' /etc/yum.repos.d/*\n')
+                wfd.write('RUN sed -i \'s/\$basearch/i386/g\' /etc/yum.repos.d/*\n')
         else:
             wfd.write(line)
