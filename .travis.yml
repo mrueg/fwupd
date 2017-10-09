@@ -7,9 +7,9 @@ services:
 
 env:
   - OS=fedora
+  - OS=fedora-i686
   - OS=debian
   - OS=arch
-  - OS=centos-i686
   - OS=debian-s390x
   - OS=ubuntu-clang
 
@@ -18,8 +18,8 @@ install:
 
 script:
   - if [[ "$OS" == "fedora" ]]; then docker run -e CI=true -t -v `pwd`:/build fwupd-$OS ./contrib/ci/build_and_install_rpms.sh; fi
+  - if [[ "$OS" == "fedora-i686" ]]; then docker run -e CI=true -t -v `pwd`:/build fwupd-$OS ./contrib/ci/build_and_install_rpms.sh; fi
   - if [[ "$OS" == "debian" ]]; then docker run -e CI=true -t -v `pwd`:/build fwupd-$OS ./contrib/ci/build_and_install_debs.sh; fi
   - if [[ "$OS" == "ubuntu-clang" ]]; then docker run -e CC=clang -e CI=true -t -v `pwd`:/build fwupd-$OS ./contrib/ci/build_and_install_debs.sh; fi
   - if [[ "$OS" == "arch" ]];   then docker run -e CI=true -t -v `pwd`:/build fwupd-$OS ./contrib/ci/build_and_install_pkgs.sh; fi
-  - if [[ "$OS" == "centos-i686" ]]; then docker run -e CI=true -t -v `pwd`:/build fwupd-$OS ./contrib/ci/build_and_install_rpms.sh; fi
   - if [[ "$OS" == "debian-s390x" ]]; then docker run -t -v `pwd`:/build fwupd-$OS ./contrib/ci/build_debian_s390x.sh; fi
