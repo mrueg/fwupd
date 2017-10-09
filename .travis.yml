@@ -11,6 +11,7 @@ env:
   - OS=arch
   - OS=debian-s390x
   - OS=ubuntu-clang
+  - OS=centos-i686
 
 install:
   - ./contrib/ci/generate_dockerfile.py; docker build -t fwupd-$OS -f contrib/ci/Dockerfile .
@@ -21,3 +22,4 @@ script:
   - if [[ "$OS" == "ubuntu-clang" ]]; then docker run -e CC=clang -e CI=true -t -v `pwd`:/build fwupd-$OS ./contrib/ci/build_and_install_debs.sh; fi
   - if [[ "$OS" == "arch" ]];   then docker run -e CI=true -t -v `pwd`:/build fwupd-$OS ./contrib/ci/build_and_install_pkgs.sh; fi
   - if [[ "$OS" == "debian-s390x" ]]; then docker run -t -v `pwd`:/build fwupd-$OS ./contrib/ci/build_debian_s390x.sh; fi
+  - if [[ "$OS" == "centos-i686" ]]; then docker run -e CI=true -t -v `pwd`:/build fwupd-$OS ./contrib/ci/build_and_install_rpms.sh; fi
